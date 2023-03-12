@@ -14,11 +14,11 @@ import WelcomePage from '../pages/WelcomePage';
 const Routes = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Root />}>
+      <Route >
         <Route index element={<WelcomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
-      </Route>
+       </Route>
     )
   );
   return (
