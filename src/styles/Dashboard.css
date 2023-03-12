@@ -1,0 +1,27 @@
+﻿/* Set default font and color for the entire page */
+
+/* Style the table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 0.5em;
+  text-align: left;
+}
+
+th {
+  background-color: #eee;
+}
+
+/* Style the table rows */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
