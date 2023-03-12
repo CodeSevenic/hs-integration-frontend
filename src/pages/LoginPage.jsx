@@ -4,8 +4,8 @@ import { login } from '../apiService';
 import LoginForm from '../components/LoginForm';
 
 const LoginPage = () => {
-  const [credentials, setCredentials] = useState({
-    usernameOrEmail: '',
+  const [values, setValues] = useState({
+    username: '',
     password: '',
   });
 
@@ -13,14 +13,14 @@ const LoginPage = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setCredentials({ ...credentials, [name]: value });
+    setValues({ ...values, [name]: value });
   };
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const data = await login(credentials);
-      localStorage.setItem('token', data.token);
+      const data = await login(values);
+      console.log(data);
       navigate('/welcome');
     } catch (error) {
       console.error(error);
@@ -29,7 +29,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <LoginForm onSubmit={handleLogin} onChange={handleChange} values={credentials} />
+      <LoginForm onSubmit={handleLogin} onChange={handleChange} values={values} />
     </div>
   );
 };

@@ -8,12 +8,7 @@ const LoginForm = ({ onSubmit, onChange, values }) => {
       <form onSubmit={onSubmit}>
         <div>
           <label>Username or Email:</label>
-          <input
-            type="text"
-            name="usernameOrEmail"
-            value={values.usernameOrEmail}
-            onChange={onChange}
-          />
+          <input type="text" name="username" value={values.username} onChange={onChange} />
         </div>
         <div>
           <label>Password:</label>
