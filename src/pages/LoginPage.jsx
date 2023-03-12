@@ -1,13 +1,17 @@
 ﻿import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../apiService';
 import LoginForm from '../components/LoginForm';
+import { setUser } from '../features/authSlice';
 
 const LoginPage = () => {
   const [values, setValues] = useState({
     username: '',
     password: '',
   });
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -20,8 +24,10 @@ const LoginPage = () => {
     event.preventDefault();
     try {
       const data = await login(values);
+      // dispatch loginUser with the response data
+      dispatch(setUser(data));
       console.log(data);
-      navigate('/welcome');
+      navigate('/');
     } catch (error) {
       console.error(error);
     }

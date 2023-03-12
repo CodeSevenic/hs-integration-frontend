@@ -1,27 +1,18 @@
 ﻿import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Welcome from '../components/Welcome';
+import '../styles/WelcomePage.css';
 
 const WelcomePage = () => {
   const [name, setName] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const contacts = user.contacts;
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
+    if (!user.userLoggedIn) {
       navigate('/login');
-    } else {
-      fetch('/api/user', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => setName(data.name))
-        .catch((error) => {
-          console.error(error);
-          navigate('/login');
-        });
     }
   }, [navigate]);
 
@@ -32,11 +23,27 @@ const WelcomePage = () => {
 
   return (
     <div>
-      {/* <Welcome name={name} />
-      <button onClick={handleLogout}>Log Out</button> */}
-      Welcome Home
-      </div>
-      )
-}
+      <h1>Contacts</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contacts.map((contact) => (
+            <tr key={contact.id}>
+              <td>{contact.properties.firstname}</td>
+              <td>{contact.properties.lastname}</td>
+              <td>{contact.properties.email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
-export default WelcomePage
+export default WelcomePage;
