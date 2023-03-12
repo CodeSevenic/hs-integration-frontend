@@ -6,29 +6,29 @@ const WelcomePage = () => {
   const [name, setName] = useState('');
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if (!token) {
-  //     navigate('/login');
-  //   } else {
-  //     fetch('/api/user', {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => setName(data.name))
-  //       .catch((error) => {
-  //         console.error(error);
-  //         navigate('/login');
-  //       });
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    } else {
+      fetch('/api/user', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => setName(data.name))
+        .catch((error) => {
+          console.error(error);
+          navigate('/login');
+        });
+    }
+  }, [navigate]);
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem('token');
-  //   navigate('/login');
-  // };
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
 
   return (
     <div>

@@ -1,5 +1,5 @@
 ﻿import React, { useState } from 'react';
-import  {useNavigate}  from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 
 const LoginPage = () => {
@@ -8,7 +8,7 @@ const LoginPage = () => {
     password: '',
   });
 
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -35,7 +35,6 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1>Log In</h1>
       <LoginForm onSubmit={handleSubmit} onChange={handleChange} values={values} />
     </div>
   );

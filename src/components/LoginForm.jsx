@@ -4,6 +4,7 @@ import '../styles/LoginForm.css';
 const LoginForm = ({ onSubmit, onChange, values }) => {
   return (
     <div className="login-form">
+      <h1>Log In</h1>
       <form onSubmit={onSubmit}>
         <div>
           <label>Email:</label>

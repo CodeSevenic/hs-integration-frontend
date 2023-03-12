@@ -36,7 +36,6 @@ const RegisterPage = () => {
 
   return (
     <div>
-      <h1>Register</h1>
       <RegisterForm onSubmit={handleSubmit} onChange={handleChange} values={values} />
     </div>
   );
