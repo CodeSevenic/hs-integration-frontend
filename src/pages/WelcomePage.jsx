@@ -1,6 +1,7 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setUser } from '../features/authSlice';
 import '../styles/WelcomePage.css';
 
 const WelcomePage = () => {
@@ -8,16 +9,16 @@ const WelcomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  const contacts = user.contacts;
+  const contacts = user?.contacts;
 
   useEffect(() => {
-    if (!user.userLoggedIn) {
+    if (!user?.userLoggedIn) {
       navigate('/login');
     }
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    dispatch(setUser(null));
     navigate('/login');
   };
 
@@ -33,15 +34,22 @@ const WelcomePage = () => {
           </tr>
         </thead>
         <tbody>
-          {contacts.map((contact) => (
-            <tr key={contact.id}>
-              <td>{contact.properties.firstname}</td>
-              <td>{contact.properties.lastname}</td>
-              <td>{contact.properties.email}</td>
+          {contacts ? (
+            contacts.map((contact) => (
+              <tr key={contact.id}>
+                <td>{contact.properties.firstname}</td>
+                <td>{contact.properties.lastname}</td>
+                <td>{contact.properties.email}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td>No Contacts</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };

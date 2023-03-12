@@ -1,5 +1,5 @@
-﻿import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+﻿import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../apiService';
 import LoginForm from '../components/LoginForm';
@@ -10,7 +10,7 @@ const LoginPage = () => {
     username: '',
     password: '',
   });
-
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -19,6 +19,12 @@ const LoginPage = () => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
   };
+
+  useEffect(() => {
+    if (user?.userLoggedIn) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
