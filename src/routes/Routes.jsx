@@ -6,7 +6,6 @@
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import Home from '../pages/Home';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import WelcomePage from '../pages/WelcomePage';
