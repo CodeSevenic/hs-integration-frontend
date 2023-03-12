@@ -7,8 +7,13 @@ const LoginForm = ({ onSubmit, onChange, values }) => {
       <h1>Log In</h1>
       <form onSubmit={onSubmit}>
         <div>
-          <label>Email:</label>
-          <input type="email" name="email" value={values.email} onChange={onChange} />
+          <label>Username or Email:</label>
+          <input
+            type="text"
+            name="usernameOrEmail"
+            value={values.usernameOrEmail}
+            onChange={onChange}
+          />
         </div>
         <div>
           <label>Password:</label>
