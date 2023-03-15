@@ -10,23 +10,20 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import WelcomePage from '../pages/WelcomePage';
 
-
 const Routes = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route >
+      <Route>
         <Route index element={<WelcomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
-       </Route>
+      </Route>
     )
   );
-  return (
-    <RouterProvider router={router} />
-  )
-}
+  return <RouterProvider router={router} />;
+};
 
-export default Routes
+export default Routes;
 
 const Root = () => {
   return (
@@ -34,7 +31,7 @@ const Root = () => {
       <div>
         <Link to={'/'}>Home</Link>
         <Link to={'/login'}>Login</Link>
-        <Link to={'/register'}>Register</Link>
+        {/* <Link to={'/register'}>Register</Link> */}
       </div>
       <div>
         <Outlet />
